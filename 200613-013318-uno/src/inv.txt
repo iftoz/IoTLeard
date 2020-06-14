@@ -1,0 +1,45 @@
+#include <LiquidCrystal.h>
+ const int PIN_RS = 12;
+ const int PIN_E = 11;
+ const int PIN_DB4 = 10;
+ const int PIN_DB5 = 9;
+ const int PIN_DB6 = 8;
+ const int PIN_DB7 = 7;
+ 
+int resa,resb;
+int a;
+int b;
+int pwm1 = 3; // pintrans1
+int pwm2 = 6; // pintrans2
+LiquidCrystal lcd(PIN_RS, PIN_E, PIN_DB4, PIN_DB5, PIN_DB6, PIN_DB7);
+void setup()
+{
+  lcd.begin(16,2);
+  lcd.clear();
+  
+}
+
+void loop() 
+ {
+   a=analogRead(A0);
+   b=analogRead(A1);
+   delay(1);
+   resa=a;
+   resb=b/5;
+   lcd.setCursor(1, 0);
+   lcd.print("nilai a = ");
+   lcd.print(resa);
+   
+   lcd.setCursor(1, 1);
+   lcd.print("nilai b = ");
+   lcd.print(resb);
+   
+   analogWrite(pwm1, resa);
+   delay(10);
+   analogWrite(pwm1, resa);
+   analogWrite(pwm2, resa);
+   delay(10);
+   analogWrite(pwm2, resa);
+ 
+   
+ }
